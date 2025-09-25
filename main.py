@@ -7,6 +7,7 @@ hostname = socket.gethostname()
 while True:
     command = input(f"\n{username}@{hostname}:~$ ")
     key = False
+    key_exit = False
     for name in os.environ:
         command = command.replace("$" + name, os.environ[name])
     command = command.split()
@@ -36,9 +37,11 @@ while True:
 
         elif command[j] == "exit":
             print("Exit")
+            key_exit = True
             break
 
         elif not key:
             print("Invalid command")
+            break
 
-    break
+    if key_exit: break
