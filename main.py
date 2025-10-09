@@ -3,12 +3,15 @@ import socket
 
 username = os.getlogin()
 hostname = socket.gethostname()
+location = os.path.abspath("vfs.txt")
+location_script = os.path.abspath("main.py")
 key_exit = False
 key = False
 
 def emulation(command):
         global key
         global key_exit
+        key = False
         for name in os.environ:
             command = command.replace("$" + name, os.environ[name])
         command = command.split()
@@ -49,11 +52,14 @@ with open("vfs.txt", "r") as f:
         if line.startswith("#"):
             continue
         if not key_exit:
-            print("\n\nvfs@", line.rstrip(), end='\n')
+            print(f"\n\n{location}@{location_script}", line.rstrip(), end='\n')
             emulation(line.rstrip())
+
+print(location)
 
 while True:
     command = input(f"\n{username}@{hostname}:~$ ")
     emulation(command)
     if key_exit or not key:
         break
+
