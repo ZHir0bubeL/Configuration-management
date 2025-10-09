@@ -53,4 +53,7 @@ with open("vfs.txt", "r") as f:
             emulation(line.rstrip())
 
 while True:
-    
+    command = input(f"\n{username}@{hostname}:~$ ")
+    emulation(command)
+    if key_exit or not key:
+        break
