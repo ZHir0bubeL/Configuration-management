@@ -2,3 +2,4 @@ cd hi mark
 ls read instruction
 cd HELP HELP
 exit
+cd fpg f
