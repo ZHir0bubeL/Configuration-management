@@ -45,3 +45,10 @@ while True:
             break
 
     if key_exit: break
+
+with open("/vfs.txt", "r") as f:
+    for line in f.readlines():
+        if line.startswith("#"):
+            continue
+        print("vfs@", line.rstrip())
+        print(emulation(line))
