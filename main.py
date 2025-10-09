@@ -51,3 +51,6 @@ with open("vfs.txt", "r") as f:
         if not key_exit:
             print("\n\nvfs@", line.rstrip(), end='\n')
             emulation(line.rstrip())
+
+while True:
+    
