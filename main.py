@@ -4,14 +4,14 @@ import socket
 username = os.getlogin()
 hostname = socket.gethostname()
 key_exit = False
+key = False
 
 def emulation(command):
-        key = False
+        global key
         global key_exit
         for name in os.environ:
             command = command.replace("$" + name, os.environ[name])
         command = command.split()
-
         for j in range(len(command)):
             if command[j] == "cd":
                 print(command[j] + ':', end=' ')
@@ -49,5 +49,5 @@ with open("vfs.txt", "r") as f:
         if line.startswith("#"):
             continue
         if not key_exit:
-            print("vfs@", line.rstrip())
-            print(emulation(line))
+            print("\n\nvfs@", line.rstrip(), end='\n')
+            emulation(line.rstrip())
